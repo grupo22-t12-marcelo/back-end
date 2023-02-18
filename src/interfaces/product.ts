@@ -1,4 +1,4 @@
-export interface IProduct {
+export interface IProductRequest {
   type_announcement: string;
   title: string;
   year: number;
@@ -7,5 +7,4 @@ export interface IProduct {
   description: string;
   type_vehicle: string;
   image: string;
-  is_published: boolean;
 }
