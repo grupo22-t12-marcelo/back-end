@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { IProduct } from "../../interfaces/product";
-import { createProductService } from "../../services/users/createProduct.service";
+import { createProductService } from "../../services/products/createProduct.service";
 
 const createProductController = async (req: Request, res: Response) => {
   const data = req.body;
