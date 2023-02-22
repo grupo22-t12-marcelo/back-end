@@ -7,6 +7,7 @@ import {
 } from "../middlewares/validateProductCreate.middleware";
 import { listProductByIdController } from "../controllers/products/listProductById.controller";
 import { updateProductController } from "../controllers/products/updateProduct.controller";
+import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";
 
 const products = Router();
 
@@ -18,7 +19,7 @@ const productRoutes = () => {
   );
   products.get("", listAllProductsController);
   products.get("/:id", listProductByIdController);
-  products.patch("/:id", updateProductController);
+  products.patch("/:id", verifyUpdatedMiddleware, updateProductController);
 
   return products;
 };
