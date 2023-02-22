@@ -6,19 +6,22 @@ import {
   validateProductCreate,
 } from "../middlewares/validateProductCreate.middleware";
 import { listProductByIdController } from "../controllers/products/listProductById.controller";
+import { updateProductController } from "../controllers/products/updateProduct.controller";
+import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";
 
-const userRoutes = Router();
+const products = Router();
 
 const productRoutes = () => {
-  userRoutes.post(
+  products.post(
     "",
     validateProductCreate(productCreateSchema),
     createProductController
   );
-  userRoutes.get("", listAllProductsController);
-  userRoutes.get("/:id", listProductByIdController);
+  products.get("", listAllProductsController);
+  products.get("/:id", listProductByIdController);
+  products.patch("/:id", verifyUpdatedMiddleware, updateProductController);
 
-  return userRoutes;
+  return products;
 };
 
 export { productRoutes };
