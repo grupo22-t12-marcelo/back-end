@@ -1,8 +1,9 @@
 import { User } from "../../entities/users.entity";
 import AppDataSource from "../../data-source";
-import { IUserRequest } from "../../interfaces/product";
+
 import { AppError } from "../../errors/appError";
 import { hash } from "bcryptjs";
+import { IUserRequest } from "../../interfaces/user";
 
 const createUserService = async (data: IUserRequest) => {
   const userRepository = AppDataSource.getRepository(User);
