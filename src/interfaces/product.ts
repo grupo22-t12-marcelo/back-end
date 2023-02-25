@@ -20,3 +20,14 @@ export interface IProductUpdate {
   type_vehicle?: string;
   image?: string;
 }
+
+export interface IUserRequest {
+  name: string;
+  email: string;
+  cpf: string;
+  phone: string;
+  date_birthdate: Date;
+  description: string;
+  type_account: string;
+  password: string;
+}
