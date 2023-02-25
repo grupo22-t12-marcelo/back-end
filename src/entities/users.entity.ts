@@ -27,7 +27,7 @@ class User {
   phone: string;
 
   @Column()
-  date_birthday: Date;
+  birthdate: Date;
 
   @Column()
   description: string;
