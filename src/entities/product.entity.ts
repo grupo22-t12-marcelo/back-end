@@ -5,8 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToMany,
+  ManyToOne,
 } from "typeorm";
 import { ImageProduct } from "./imageProduct.entity";
+import { User } from "./users.entity";
 
 @Entity("products")
 class Product {
@@ -48,6 +51,9 @@ class Product {
 
   @OneToMany(() => ImageProduct, (images) => images.product)
   images: ImageProduct[];
+
+  @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
+  user: User;
 }
 
 export { Product };
