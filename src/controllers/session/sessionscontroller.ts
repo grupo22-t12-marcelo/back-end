@@ -7,7 +7,7 @@ const createSessionController = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     const token = await createSessionService({ username, password });
 
-    return res.status(200).json({ token });
+    return res.status(200).json(token);
   } catch (error) {
     if (error instanceof AppError) {
       const { statusCode, message } = error;

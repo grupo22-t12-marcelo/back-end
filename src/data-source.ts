@@ -2,14 +2,12 @@ import "reflect-metadata";
 import "dotenv/config";
 import path from "path";
 import { DataSource, DataSourceOptions } from "typeorm";
+import { User } from "./entities/users.entity";
+import { Product } from "./entities/product.entity";
+import { ImageProduct } from "./entities/imageProduct.entity";
+import { initialMigration1677593562157 } from "./migrations/1677593562157-initialMigration";
 
 const setDataSourceConfig = (): DataSourceOptions => {
-  const entitiesPath: string = path.join(__dirname, "./entities/**.{js,ts}");
-  const migrationsPath: string = path.join(
-    __dirname,
-    "./migrations/**.{js,ts}"
-  );
-
   const nodeEnv = process.env.NODE_ENV;
 
   if (nodeEnv === "test") {
@@ -17,7 +15,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory:",
       synchronize: true,
-      entities: [entitiesPath],
+      entities: [User, Product, ImageProduct],
     };
   }
 
@@ -30,8 +28,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.POSTGRES_DB,
     synchronize: false,
     logging: true,
-    entities: [entitiesPath],
-    migrations: [migrationsPath],
+    entities: [User, Product, ImageProduct],
+    migrations: [initialMigration1677593562157],
   };
 };
 
