@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { Product } from "./product.entity";
+import { Address } from "./address.entity";
 
 @Entity("users")
 class User {
@@ -44,6 +47,10 @@ class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToOne(() => Address, {eager: true})
+  @JoinColumn()
+  address: Address;
 
   @OneToMany(() => Product, (product) => product.user, {
     eager: true,
