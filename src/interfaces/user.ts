@@ -8,3 +8,8 @@ export interface IUserRequest {
   type_account: string;
   password: string;
 }
+
+export interface IUserLogin {
+  username: string;
+  password: string;
+}
