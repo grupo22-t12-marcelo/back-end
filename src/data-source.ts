@@ -5,7 +5,8 @@ import { DataSource, DataSourceOptions } from "typeorm";
 import { User } from "./entities/users.entity";
 import { Product } from "./entities/product.entity";
 import { ImageProduct } from "./entities/imageProduct.entity";
-import { initialMigration1677593562157 } from "./migrations/1677593562157-initialMigration";
+import { Address } from "./entities/address.entity";
+import { initialMigration1677595003418 } from "./migrations/1677595003418-initialMigration";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -28,8 +29,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.POSTGRES_DB,
     synchronize: false,
     logging: true,
-    entities: [User, Product, ImageProduct],
-    migrations: [initialMigration1677593562157],
+    entities: [User, Product, ImageProduct, Address],
+    migrations: [initialMigration1677595003418],
   };
 };
 
