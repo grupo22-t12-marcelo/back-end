@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -52,6 +53,7 @@ class Product {
   @OneToMany(() => ImageProduct, (images) => images.product)
   images: ImageProduct[];
 
+  @Exclude()
   @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
   user: User;
 }

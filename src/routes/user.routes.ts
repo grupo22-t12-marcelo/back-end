@@ -7,6 +7,7 @@ import {
   userCreateSchema,
   validateUserCreate,
 } from "../middlewares/validateUserCreate.middeware";
+
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 import validatedBodySerializer from "../serializer/validatedBody.serializer";
 
@@ -15,8 +16,13 @@ const users = Router();
 const userRoutes = () => {
   users.post("", validateUserCreate(userCreateSchema), createUserController);
   users.post("/forgot-password", forgotPasswordController);
-  users.delete("/:id", deleteUserController);
-  users.patch("", verifyTokenMiddleware, validatedBodySerializer, updateUserController)
+  users.delete("", verifyTokenMiddleware, deleteUserController);
+  users.patch(
+    "",
+    verifyTokenMiddleware,
+    validatedBodySerializer,
+    updateUserController
+  );
   return users;
 };
 
