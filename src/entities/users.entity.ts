@@ -48,7 +48,7 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Address, (address) => address.user)
+  @OneToOne(() => Address, (address) => address.user, { eager: true })
   address: Address;
 
   @OneToMany(() => Product, (product) => product.user, {
