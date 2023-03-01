@@ -1,13 +1,8 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany,
-  ManyToMany,
-  ManyToOne,
+  CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn
 } from "typeorm";
+import { Comment } from "./comment.entity";
 import { ImageProduct } from "./imageProduct.entity";
 import { User } from "./users.entity";
 
@@ -54,6 +49,13 @@ class Product {
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.product, {
+  eager: true,
+  })
+  comments: Comment[];
+
 }
 
 export { Product };
+

@@ -1,12 +1,12 @@
-import "reflect-metadata";
 import "dotenv/config";
-import path from "path";
+import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
-import { User } from "./entities/users.entity";
-import { Product } from "./entities/product.entity";
-import { ImageProduct } from "./entities/imageProduct.entity";
 import { Address } from "./entities/address.entity";
-import { initialMigration1677606021193 } from "./migrations/1677606021193-initialMigration";
+import { Comment } from "./entities/comment.entity";
+import { ImageProduct } from "./entities/imageProduct.entity";
+import { Product } from "./entities/product.entity";
+import { User } from "./entities/users.entity";
+import { createCommentEntity1677636606995 } from "./migrations/1677636606995-createCommentEntity";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -16,7 +16,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory:",
       synchronize: true,
-      entities: [User, Product, ImageProduct],
+      entities: [User, Product, ImageProduct, Address, Comment],
     };
   }
 
@@ -29,8 +29,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.POSTGRES_DB,
     synchronize: false,
     logging: true,
-    entities: [User, Product, ImageProduct, Address],
-    migrations: [initialMigration1677606021193],
+    entities: [User, Product, ImageProduct, Address, Comment],
+    migrations: [createCommentEntity1677636606995],
   };
 };
 

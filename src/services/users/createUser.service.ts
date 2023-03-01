@@ -1,8 +1,8 @@
-import { User } from "../../entities/users.entity";
 import AppDataSource from "../../data-source";
+import { User } from "../../entities/users.entity";
 
-import { AppError } from "../../errors/appError";
 import { hash } from "bcryptjs";
+import { AppError } from "../../errors/appError";
 import { IUserRequest } from "../../interfaces/user";
 
 const createUserService = async (data: IUserRequest) => {
@@ -27,3 +27,4 @@ const createUserService = async (data: IUserRequest) => {
 };
 
 export { createUserService };
+
