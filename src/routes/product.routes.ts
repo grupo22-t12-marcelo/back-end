@@ -4,7 +4,7 @@ import { createProductController } from "../controllers/products/createProduct.c
 import {
   productCreateSchema,
   validateProductCreate,
-} from "../middlewares/validateProductCreate.middleware";
+} from "../serializer/validateProductCreate.middleware";
 import { listProductByIdController } from "../controllers/products/listProductById.controller";
 import { updateProductController } from "../controllers/products/updateProduct.controller";
 import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";

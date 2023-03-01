@@ -6,7 +6,7 @@ import updateUserController from "../controllers/users/updateUser.controller";
 import {
   userCreateSchema,
   validateUserCreate,
-} from "../middlewares/validateUserCreate.middeware";
+} from "../serializer/validateUserCreate.middeware";
 
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 import validatedBodySerializer from "../serializer/validatedBody.serializer";
@@ -20,7 +20,7 @@ const userRoutes = () => {
   users.patch(
     "",
     verifyTokenMiddleware,
-
+    validatedBodySerializer,
     updateUserController
   );
   return users;
