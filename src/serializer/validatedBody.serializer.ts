@@ -4,14 +4,11 @@ import * as yup from "yup";
 import { IAddressRequest, IUserRequest } from "../interfaces/user";
 
 const addressSchema: yup.SchemaOf<IAddressRequest> = yup.object().shape({
-  zipCode: yup
-    .string()
-    .required("zip_code is a required field")
-    .max(8, "Maximum 8 caracters"),
-  state: yup.string().required("state is a required field"),
-  city: yup.string().required("city is a required field"),
-  road: yup.string().required("street is a required field"),
-  number: yup.string().required("number is a required field"),
+  zipCode: yup.string().required().max(8, "Maximum 8 caracters"),
+  state: yup.string().required(),
+  city: yup.string().required(),
+  road: yup.string().required(),
+  number: yup.string().required(),
   complement: yup.string(),
 });
 
