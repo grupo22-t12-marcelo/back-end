@@ -6,6 +6,8 @@ declare global {
       user: {
         id: string;
       };
+      id: string;
+      validated: any;
     }
   }
 }

@@ -31,6 +31,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
     migrations: [initialMigration1677680565808],
+
   };
 };
 

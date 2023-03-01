@@ -4,9 +4,13 @@ import { User } from "../../entities/users.entity";
 import { hash } from "bcryptjs";
 import { AppError } from "../../errors/appError";
 import { IUserRequest } from "../../interfaces/user";
+import { Address } from "../../entities/address.entity";
 
 const createUserService = async (data: IUserRequest) => {
   const userRepository = AppDataSource.getRepository(User);
+  const addressRepository = AppDataSource.getRepository(Address);
+
+  const { address } = data;
 
   const users = await userRepository.find();
 
@@ -19,7 +23,13 @@ const createUserService = async (data: IUserRequest) => {
 
   data.password = await hash(data.password, 10);
 
-  const user = userRepository.create(data);
+  const addressSave = addressRepository.create(address);
+  await addressRepository.save(addressSave);
+
+  const user = userRepository.create({
+    ...data,
+    address: addressSave,
+  });
 
   await userRepository.save(user);
 
