@@ -32,14 +32,16 @@ const userUpdateService = async (id: string, data: IUserUpdateRequest) => {
   });
 
   await addressRepository.update(user.address.id, {
-    city: data.address.city ? data.address.city : user.address.city,
-    complement: data.address.complement
-      ? data.address.complement
+    city: data.address?.city ? data.address?.city : user.address.city,
+    complement: data.address?.complement
+      ? data.address?.complement
       : user.address.complement,
-    number: data.address.number ? data.address.number : user.address.number,
-    road: data.address.road ? data.address.road : user.address.road,
-    state: data.address.state ? data.address.state : user.address.state,
-    zipCode: data.address.zipCode ? data.address.zipCode : user.address.zipCode,
+    number: data.address?.number ? data.address?.number : user.address.number,
+    road: data.address?.road ? data.address?.road : user.address.road,
+    state: data.address?.state ? data.address?.state : user.address.state,
+    zipCode: data.address?.zipCode
+      ? data.address?.zipCode
+      : user.address.zipCode,
   });
 
   const result = await userRepository.findOneBy({ id });

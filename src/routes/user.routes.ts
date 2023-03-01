@@ -20,7 +20,7 @@ const userRoutes = () => {
   users.patch(
     "",
     verifyTokenMiddleware,
-    validatedBodySerializer,
+
     updateUserController
   );
   return users;
