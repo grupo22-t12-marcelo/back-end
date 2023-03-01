@@ -4,11 +4,11 @@ import * as yup from "yup";
 import { IAddressRequest, IUserRequest } from "../interfaces/user";
 
 const addressSchema: yup.SchemaOf<IAddressRequest> = yup.object().shape({
-  zipCode: yup.string().required().max(8, "Maximum 8 caracters"),
-  state: yup.string().required(),
-  city: yup.string().required(),
-  road: yup.string().required(),
-  number: yup.string().required(),
+  zipCode: yup.string(),
+  state: yup.string(),
+  city: yup.string(),
+  road: yup.string(),
+  number: yup.string(),
   complement: yup.string(),
 });
 
