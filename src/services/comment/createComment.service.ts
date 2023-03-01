@@ -3,9 +3,10 @@ import { Comment } from "../../entities/comment.entity";
 import { Product } from "../../entities/product.entity";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
+import { ICommentRequest } from "../../interfaces/comment";
 
 
-const createCommentService = async (data: string, id: string, product_id: string) => {
+const createCommentService = async (data: ICommentRequest, id: string, product_id: string) => {
   const productRepository = AppDataSource.getRepository(Product);
   const commentRepository = AppDataSource.getRepository(Comment);
   const userRepository = AppDataSource.getRepository(User);
@@ -14,7 +15,7 @@ const createCommentService = async (data: string, id: string, product_id: string
     id:id
   })
 
-  if(user!){
+  if(!user){
     throw new AppError("User not found",404);
   }
 
@@ -22,19 +23,19 @@ const createCommentService = async (data: string, id: string, product_id: string
     id:product_id
   })
   
-  if(product!){
+  if(!product){
     throw new AppError("Product not found",404);
   }
 
-  const comment = new Comment()
-  comment.user = user
-  comment.product = product
-  comment.comment = data
+  const comments = new Comment()
+  comments.user = user;
+  comments.product = product;
+  comments.comment = data.comment
 
-  commentRepository.create(comment)
-  await commentRepository.save(comment);
+  commentRepository.create(comments)
+  await commentRepository.save(comments);
 
-  return comment;
+  return comments;
 };
 export { createCommentService };
 

@@ -6,7 +6,7 @@ import { Comment } from "./entities/comment.entity";
 import { ImageProduct } from "./entities/imageProduct.entity";
 import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
-import { createCommentEntity1677636606995 } from "./migrations/1677636606995-createCommentEntity";
+import { initialMigration1677680565808 } from "./migrations/1677680565808-initialMigration";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -30,7 +30,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
-    migrations: [createCommentEntity1677636606995],
+    migrations: [initialMigration1677680565808],
   };
 };
 

@@ -1,20 +1,21 @@
 import { Router } from "express";
-import { listAllProductsController } from "../controllers/products/listAllProducts.controller";
 import { createProductController } from "../controllers/products/createProduct.controller";
-import {
-  productCreateSchema,
-  validateProductCreate,
-} from "../middlewares/validateProductCreate.middleware";
+import { deleteProductController } from "../controllers/products/deleteProduct.controller";
+import { listAllProductsController } from "../controllers/products/listAllProducts.controller";
 import { listProductByIdController } from "../controllers/products/listProductById.controller";
 import { updateProductController } from "../controllers/products/updateProduct.controller";
+import authTokenMiddleware from "../middlewares/authToken.middleware";
+import {
+  productCreateSchema,
+  validateProductCreate
+} from "../middlewares/validateProductCreate.middleware";
 import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";
-import { deleteProductController } from "../controllers/products/deleteProduct.controller";
 
 const products = Router();
 
 const productRoutes = () => {
   products.post(
-    "",
+    "", authTokenMiddleware,
     validateProductCreate(productCreateSchema),
     createProductController
   );
@@ -26,3 +27,4 @@ const productRoutes = () => {
 };
 
 export { productRoutes };
+

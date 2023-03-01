@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
     Column,
     CreateDateColumn,
@@ -24,9 +25,11 @@ class Comment {
     updatedAt: Date;
 
     @ManyToOne(type => User, user => user.comments)
+    @Exclude()
     user: User;
 
     @ManyToOne(type => Product, product => product.comments)
+    @Exclude()
     product: Product;
 
 }

@@ -23,7 +23,7 @@ const authTokenMiddleware =async (req: Request, res: Response, next: NextFunctio
         }
 
         req.user = {
-            id: decoded.idToken,
+            id: decoded.id,
         }
     })
     next()
