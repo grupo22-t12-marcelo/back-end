@@ -4,8 +4,8 @@ import { createSessionService } from "../../services/sessions/createSession.serv
 
 const createSessionController = async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
-    const token = await createSessionService({ username, password });
+    const { email, password } = req.body;
+    const token = await createSessionService({ email, password });
 
     return res.status(200).json(token);
   } catch (error) {
