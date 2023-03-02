@@ -16,7 +16,7 @@ export interface IProductRequest {
   description: string;
   type_vehicle: string;
   image: string;
-  imagesGallery: IImagesGallery;
+  imagesGallery?: IImagesGallery;
 }
 
 export interface IProductUpdate {
