@@ -8,6 +8,7 @@ import {
   OneToMany,
   ManyToMany,
   ManyToOne,
+  OneToOne,
 } from "typeorm";
 import { ImageProduct } from "./imageProduct.entity";
 import { User } from "./users.entity";
@@ -50,8 +51,8 @@ class Product {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => ImageProduct, (images) => images.product)
-  images: ImageProduct[];
+  @OneToOne(() => ImageProduct, (images) => images.product, { eager: true })
+  imagesGallery: ImageProduct;
 
   @Exclude()
   @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
