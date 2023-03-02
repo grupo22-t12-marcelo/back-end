@@ -6,12 +6,20 @@ import { compareSync } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-const createSessionService = async ({ username, password }: IUserLogin) => {
+const createSessionService = async ({ email, password }: IUserLogin) => {
+  if (!email) {
+    throw new AppError("Field email is required");
+  }
+
+  if (!password) {
+    throw new AppError("Field password is required");
+  }
+
   const userRepository = AppDataSource.getRepository(User);
 
   const user = await userRepository.find();
 
-  const accountUser = user.find((user) => user.name === username);
+  const accountUser = user.find((user) => user.email === email);
 
   if (!accountUser) {
     throw new AppError("Account not found", 403);
