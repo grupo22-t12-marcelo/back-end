@@ -19,6 +19,13 @@ export interface IUserRequest {
   address: IAddressRequest;
 }
 
+export interface IUserListProduct {
+  id: string;
+  name: string;
+  description: string;
+  type_account: string;
+}
+
 export interface IUserLogin {
   username: string;
   password: string;

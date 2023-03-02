@@ -55,7 +55,10 @@ class Product {
   imagesGallery: ImageProduct;
 
   @Exclude()
-  @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.products, {
+    onDelete: "CASCADE",
+    eager: true,
+  })
   user: User;
 }
 
