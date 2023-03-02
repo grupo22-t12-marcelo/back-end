@@ -1,3 +1,12 @@
+export interface IImagesGallery {
+  image1: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  image6?: string;
+}
+
 export interface IProductRequest {
   type_announcement: string;
   title: string;
@@ -7,6 +16,7 @@ export interface IProductRequest {
   description: string;
   type_vehicle: string;
   image: string;
+  imagesGallery: IImagesGallery;
 }
 
 export interface IProductUpdate {

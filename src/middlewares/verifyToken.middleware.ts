@@ -23,8 +23,9 @@ const verifyTokenMiddleware = (
       });
     }
 
-    const { id } = decoded;
-    request.id = id
+    request.user = {
+      id: decoded.sub,
+    };
 
     next();
   });

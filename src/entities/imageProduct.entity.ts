@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Product } from "./product.entity";
 
 @Entity("imageProduct")
@@ -7,9 +14,27 @@ class ImageProduct {
   id: string;
 
   @Column()
-  image: string;
+  image1: string;
 
-  @ManyToOne(() => Product)
+  @Column({ nullable: true })
+  image2: string;
+
+  @Column({ nullable: true })
+  image3: string;
+
+  @Column({ nullable: true })
+  image4: string;
+
+  @Column({ nullable: true })
+  image5: string;
+
+  @Column({ nullable: true })
+  image6: string;
+
+  @OneToOne(() => Product, (product) => product.imagesGallery, {
+    onDelete: "CASCADE",
+  })
+  @JoinColumn()
   product: Product;
 }
 

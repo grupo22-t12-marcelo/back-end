@@ -1,5 +1,6 @@
 import { User } from "../../entities/users.entity";
 import AppDataSource from "../../data-source";
+import "dotenv/config";
 
 import { AppError } from "../../errors/appError";
 import * as bcrypt from "bcryptjs";
@@ -16,11 +17,11 @@ const forgotPasswordService = async (email: string) => {
   }
 
   const transporter = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
-      user: "42f8a43cf5ab3e",
-      pass: "5fea1e516e632e",
+      user: process.env.USER_EMAIL,
+      pass: process.env.PASSWORD,
     },
   });
 
@@ -28,7 +29,7 @@ const forgotPasswordService = async (email: string) => {
 
   transporter
     .sendMail({
-      from: "Administrador <6384f2786c-00a7a1@inbox.mailtrap.io>",
+      from: process.env.USER_EMAIL,
       to: email,
       subject: "Recuperação de senha",
       html: `<p>Olá, sua nova senha para acessar o sistema é: ${newPassword}</p><br/><a href="http://localhost:3000/login">Sistema</a>`,

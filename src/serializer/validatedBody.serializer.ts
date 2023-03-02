@@ -1,8 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/appError";
 import * as yup from "yup";
+import { IAddressRequest, IUserRequest } from "../interfaces/user";
 
-const schema = yup.object().shape({
+const addressSchema: yup.SchemaOf<IAddressRequest> = yup.object().shape({
+  zipCode: yup.string(),
+  state: yup.string(),
+  city: yup.string(),
+  road: yup.string(),
+  number: yup.string(),
+  complement: yup.string(),
+});
+
+const schema: yup.SchemaOf<IUserRequest> = yup.object().shape({
   name: yup.string(),
   email: yup.string(),
   cpf: yup.string(),
@@ -11,6 +21,7 @@ const schema = yup.object().shape({
   description: yup.string(),
   type_account: yup.string(),
   password: yup.string(),
+  address: addressSchema,
 });
 
 const validatedBodySerializer = async (
