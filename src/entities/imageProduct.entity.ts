@@ -16,19 +16,19 @@ class ImageProduct {
   @Column()
   image1: string;
 
-  @Column({ nullable: true })
+  @Column({ default: "none" })
   image2: string;
 
-  @Column({ nullable: true })
+  @Column({ default: "none" })
   image3: string;
 
-  @Column({ nullable: true })
+  @Column({ default: "none" })
   image4: string;
 
-  @Column({ nullable: true })
+  @Column({ default: "none" })
   image5: string;
 
-  @Column({ nullable: true })
+  @Column({ default: "none" })
   image6: string;
 
   @OneToOne(() => Product, (product) => product.imagesGallery, {

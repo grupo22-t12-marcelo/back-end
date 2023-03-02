@@ -1,5 +1,9 @@
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/users.entity";
+import {
+  productsbyUser,
+  userSchema,
+} from "../../serializer/productsbyUser.serializer";
 
 const listProductsbyUserService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -13,7 +17,11 @@ const listProductsbyUserService = async (id: string) => {
     },
   });
 
-  return user?.products;
+  /*  const userProducts = await userSchema.validate(user, {
+    stripUnknown: true,
+  }); */
+
+  return user;
 };
 
 export { listProductsbyUserService };
