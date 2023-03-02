@@ -11,12 +11,14 @@ import {
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 import validatedBodySerializer from "../serializer/validatedBody.serializer";
 import { listProductsbyUserController } from "../controllers/users/listProductsbyUser.controller";
+import { listUserController } from "../controllers/users/listUser.controller";
 
 const users = Router();
 
 const userRoutes = () => {
   users.post("", validateUserCreate(userCreateSchema), createUserController);
   users.post("/forgot-password", forgotPasswordController);
+  users.get("", verifyTokenMiddleware, listUserController);
   users.get("/:id", listProductsbyUserController);
   users.delete("", verifyTokenMiddleware, deleteUserController);
   users.patch(
