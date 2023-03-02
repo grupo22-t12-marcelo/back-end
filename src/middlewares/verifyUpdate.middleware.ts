@@ -10,7 +10,7 @@ const verifyUpdatedMiddleware = (
 
   const keys = Object.keys(data);
 
-  const notChange = keys.find((key) => key === "is_published" || key === "id");
+  const notChange = keys.find((key) => key === "id");
 
   if (notChange) throw new AppError(`${notChange} cannot be changed`, 401);
 

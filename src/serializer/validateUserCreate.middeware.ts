@@ -1,7 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IUserRequest } from "../interfaces/user";
+import { IAddressRequest, IUserRequest } from "../interfaces/user";
+
+const addressSchema: SchemaOf<IAddressRequest> = yup.object().shape({
+  zipCode: yup.string().required().max(8, "Maximum 8 caracters"),
+  state: yup.string().required(),
+  city: yup.string().required(),
+  road: yup.string().required(),
+  number: yup.string().required(),
+  complement: yup.string(),
+});
 
 const userCreateSchema: SchemaOf<IUserRequest> = yup.object().shape({
   name: yup.string().required(),
@@ -12,6 +21,7 @@ const userCreateSchema: SchemaOf<IUserRequest> = yup.object().shape({
   description: yup.string().required(),
   type_account: yup.string().oneOf(["Comprador", "Anunciante"]).required(),
   password: yup.string().required(),
+  address: addressSchema,
 });
 
 const validateUserCreate =

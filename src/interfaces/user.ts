@@ -24,6 +24,15 @@ export interface IUserLogin {
   password: string;
 }
 
+export interface IAddressUpdate {
+  zipCode?: string;
+  state?: string;
+  city?: string;
+  road?: string;
+  number?: string;
+  complement?: string;
+}
+
 export interface IUserUpdateRequest {
   name?: string;
   email?: string;
@@ -33,4 +42,5 @@ export interface IUserUpdateRequest {
   description?: string;
   type_account?: string;
   password?: string;
+  address: IAddressUpdate;
 }

@@ -7,6 +7,7 @@ import { ImageProduct } from "./entities/imageProduct.entity";
 import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
 import { novo1677697488551 } from "./migrations/1677697488551-novo";
+import { createTables1677719316076 } from "./migrations/1677719316076-createTables";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -31,7 +32,6 @@ const setDataSourceConfig = (): DataSourceOptions => {
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
     migrations: [novo1677697488551],
-
   };
 };
 

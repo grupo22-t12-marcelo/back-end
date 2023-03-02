@@ -1,6 +1,7 @@
+import { Exclude } from "class-transformer";
 import {
   Column,
-  CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn
+  CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
 } from "typeorm";
 import { Comment } from "./comment.entity";
 import { ImageProduct } from "./imageProduct.entity";
@@ -44,9 +45,10 @@ class Product {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => ImageProduct, (images) => images.product)
-  images: ImageProduct[];
+  @OneToOne(() => ImageProduct, (images) => images.product, { eager: true })
+  imagesGallery: ImageProduct;
 
+  @Exclude()
   @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
   user: User;
 
