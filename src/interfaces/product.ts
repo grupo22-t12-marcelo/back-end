@@ -30,3 +30,15 @@ export interface IProductUpdate {
   type_vehicle?: string;
   image?: string;
 }
+
+export interface IProductListAll {
+  type_announcement: string;
+  title: string;
+  year: number;
+  kilometers: number;
+  price: number;
+  description: string;
+  type_vehicle: string;
+  image: string;
+  createdAt: Date;
+}

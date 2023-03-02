@@ -3,12 +3,20 @@ import AppDataSource from "../../data-source";
 import { Product } from "../../entities/product.entity";
 import { AppError } from "../../errors/appError";
 
-const updateProductService = async (data: IProductUpdate, id: string) => {
+const updateProductService = async (
+  data: IProductUpdate,
+  id: string,
+  user_id: string
+) => {
   const productRepository = AppDataSource.getRepository(Product);
 
   const products = await productRepository.find();
 
   const product = products.find((product) => product.id === id);
+
+  if (product.user.id !== user_id) {
+    throw new AppError("User not owner", 401);
+  }
 
   if (!product) {
     throw new AppError("Product not found", 404);
