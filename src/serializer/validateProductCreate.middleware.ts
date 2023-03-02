@@ -1,7 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IProductRequest } from "../interfaces/product";
+import { IImagesGallery, IProductRequest } from "../interfaces/product";
+
+const imagesSchema: SchemaOf<IImagesGallery> = yup.object().shape({
+  image1: yup.string().required(),
+  image2: yup.string(),
+  image3: yup.string(),
+  image4: yup.string(),
+  image5: yup.string(),
+  image6: yup.string(),
+});
 
 const productCreateSchema: SchemaOf<IProductRequest> = yup.object().shape({
   type_announcement: yup.string().oneOf(["Venda", "Leilão"]).required(),
@@ -12,6 +21,7 @@ const productCreateSchema: SchemaOf<IProductRequest> = yup.object().shape({
   description: yup.string().required(),
   type_vehicle: yup.string().oneOf(["Carro", "Moto"]).required(),
   image: yup.string().required(),
+  imagesGallery: imagesSchema,
 });
 
 const validateProductCreate =
