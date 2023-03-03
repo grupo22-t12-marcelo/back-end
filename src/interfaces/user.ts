@@ -1,3 +1,5 @@
+import { IProductListAll } from "./product";
+
 export interface IAddressRequest {
   zipCode: string;
   state: string;
@@ -50,4 +52,12 @@ export interface IUserUpdateRequest {
   type_account?: string;
   password?: string;
   address: IAddressUpdate;
+}
+
+export interface IUserListProduct2 {
+  id: string;
+  name: string;
+  description: string;
+  type_account: string;
+  products: IProductListAll;
 }
