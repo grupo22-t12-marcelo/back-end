@@ -8,6 +8,7 @@ import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
 import { createMerge1677763042696 } from "./migrations/1677763042696-createMerge";
 
+
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
 
@@ -32,7 +33,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     entities: [User, Product, ImageProduct, Address, Comment],
     migrations: [createMerge1677763042696],
 
-  };
+
 };
 
 const dataSourceConfig = setDataSourceConfig();

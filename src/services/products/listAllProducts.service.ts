@@ -5,7 +5,11 @@ import { listProducts } from "../../serializer/productRetorned.serializer";
 
 const listAllProductsService = async () => {
   const productRepository = AppDataSource.getRepository(Product);
-  const productsList = await productRepository.find();
+  const productsList = await productRepository.find({
+    relations: {
+      user: true,
+    },
+  });
 
   const newListProduct = await listProducts.validate(productsList, {
     stripUnknown: true,

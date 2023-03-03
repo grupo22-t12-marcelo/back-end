@@ -4,16 +4,11 @@ import { User } from "../../entities/users.entity";
 const listProductsbyUserService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const user = await userRepository.findOne({
-    where: {
-      id: id,
-    },
-    relations: {
-      products: true,
-    },
+  const user = await userRepository.findOneBy({
+    id: id,
   });
 
-  return user?.products;
+  return user;
 };
 
 export { listProductsbyUserService };

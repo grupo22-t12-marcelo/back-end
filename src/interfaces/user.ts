@@ -1,3 +1,5 @@
+import { IProductListAll } from "./product";
+
 export interface IAddressRequest {
   zipCode: string;
   state: string;

@@ -48,13 +48,12 @@ class Product {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => ImageProduct, (images) => images.product, { eager: true })
+  @OneToOne(() => ImageProduct, (images) => images.product)
   imagesGallery: ImageProduct;
 
   @Exclude()
   @ManyToOne(() => User, (user) => user.products, {
     onDelete: "CASCADE",
-    eager: true,
   })
   user: User;
 
