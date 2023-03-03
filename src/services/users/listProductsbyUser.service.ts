@@ -17,7 +17,7 @@ const listProductsbyUserService = async (id: string) => {
     },
   });
 
-  /*  const userProducts = await userSchema.validate(user, {
+  /* const userProducts = await userSchema.validate(user, {
     stripUnknown: true,
   }); */
 
