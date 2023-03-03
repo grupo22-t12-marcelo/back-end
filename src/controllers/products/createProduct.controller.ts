@@ -5,12 +5,12 @@ import { createProductService } from "../../services/products/createProduct.serv
 
 const createProductController = async (req: Request, res: Response) => {
   const data = req.body;
-  const { ImageGallerry } = req.body
+  const imageGallery = req.body.imagesGallery
   const id = req.user.id;
   const createdAnnouncement = await createProductService(data, id);
   const product_id = createdAnnouncement.id
-  const createdAnnouncementImageGallerry = await createImageGallery(ImageGallerry, product_id, id)
-  return res.status(201).json(instanceToInstance(createdAnnouncementImageGallerry));
+  const createdAnnouncementImageGallerry = await createImageGallery(imageGallery, product_id, id)
+  return res.status(201).json(instanceToInstance(createdAnnouncement));
 };
 
 export { createProductController };

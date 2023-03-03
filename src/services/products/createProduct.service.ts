@@ -1,9 +1,9 @@
-import { IProductRequest } from "../../interfaces/product";
 import AppDataSource from "../../data-source";
+import { ImageProduct } from "../../entities/imageProduct.entity";
 import { Product } from "../../entities/product.entity";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
-import { ImageProduct } from "../../entities/imageProduct.entity";
+import { IProductRequest } from "../../interfaces/product";
 
 const createProductService = async (data: IProductRequest, id: string) => {
   const productRepository = AppDataSource.getRepository(Product);
@@ -34,3 +34,4 @@ const createProductService = async (data: IProductRequest, id: string) => {
   return product;
 };
 export { createProductService };
+

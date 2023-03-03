@@ -32,8 +32,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
     migrations: [createMerge1677763042696],
-
-
+  }
 };
 
 const dataSourceConfig = setDataSourceConfig();
