@@ -53,11 +53,3 @@ export interface IUserUpdateRequest {
   password?: string;
   address: IAddressUpdate;
 }
-
-export interface IUserListProduct2 {
-  id: string;
-  name: string;
-  description: string;
-  type_account: string;
-  products: IProductListAll;
-}

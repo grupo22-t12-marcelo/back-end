@@ -51,7 +51,7 @@ class User {
   @OneToOne(() => Address, (address) => address.user)
   address: Address;
 
-  @OneToMany(() => Product, (product) => product.user)
+  @OneToMany(() => Product, (product) => product.user, { eager: true })
   products: Product[];
 }
 

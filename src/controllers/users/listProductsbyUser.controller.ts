@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { listProductsbyUserService } from "../../services/users/listProductsbyUser.service";
 
@@ -6,7 +7,7 @@ const listProductsbyUserController = async (req: Request, res: Response) => {
 
   const listProducts = await listProductsbyUserService(id);
 
-  return res.json(listProducts);
+  return res.json(instanceToInstance(listProducts));
 };
 
 export { listProductsbyUserController };
