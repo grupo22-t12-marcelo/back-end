@@ -1,12 +1,13 @@
-import "reflect-metadata";
 import "dotenv/config";
+import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
-import { User } from "./entities/users.entity";
-import { Product } from "./entities/product.entity";
-import { ImageProduct } from "./entities/imageProduct.entity";
 import { Address } from "./entities/address.entity";
-import { createTables1677796305618 } from "./migrations/1677796305618-createTables";
-import { createTables1677796539357 } from "./migrations/1677796539357-createTables";
+import { Comment } from "./entities/comment.entity";
+import { ImageProduct } from "./entities/imageProduct.entity";
+import { Product } from "./entities/product.entity";
+import { User } from "./entities/users.entity";
+import { createMerge1677763042696 } from "./migrations/1677763042696-createMerge";
+
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -16,7 +17,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory:",
       synchronize: true,
-      entities: [User, Product, ImageProduct],
+      entities: [User, Product, ImageProduct, Address, Comment],
     };
   }
 
@@ -29,9 +30,9 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.POSTGRES_DB,
     synchronize: false,
     logging: true,
-    entities: [User, Product, ImageProduct, Address],
-    migrations: [createTables1677796305618, createTables1677796539357],
-  };
+    entities: [User, Product, ImageProduct, Address, Comment],
+    migrations: [createMerge1677763042696],
+  }
 };
 
 const dataSourceConfig = setDataSourceConfig();

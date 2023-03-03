@@ -1,15 +1,12 @@
 import { Exclude } from "class-transformer";
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany,
-  ManyToMany,
-  ManyToOne,
-  OneToOne,
+  Entity, 
+  ManyToOne, 
+  OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
 } from "typeorm";
+import { Comment } from "./comment.entity";
 import { ImageProduct } from "./imageProduct.entity";
 import { User } from "./users.entity";
 
@@ -59,6 +56,13 @@ class Product {
     onDelete: "CASCADE",
   })
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.product, {
+  eager: true,
+  })
+  comments: Comment[];
+
 }
 
 export { Product };
+

@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { listAllProductsController } from "../controllers/products/listAllProducts.controller";
 import { createProductController } from "../controllers/products/createProduct.controller";
-import {
-  productCreateSchema,
-  validateProductCreate,
-} from "../serializer/validateProductCreate.middleware";
+import { deleteProductController } from "../controllers/products/deleteProduct.controller";
+import { listAllProductsController } from "../controllers/products/listAllProducts.controller";
 import { listProductByIdController } from "../controllers/products/listProductById.controller";
 import { updateProductController } from "../controllers/products/updateProduct.controller";
-import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";
-import { deleteProductController } from "../controllers/products/deleteProduct.controller";
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
+import verifyUpdatedMiddleware from "../middlewares/verifyUpdate.middleware";
+import {
+  productCreateSchema,
+  validateProductCreate
+} from "../serializer/validateProductCreate.middleware";
 
 const products = Router();
 
@@ -33,3 +33,4 @@ const productRoutes = () => {
 };
 
 export { productRoutes };
+

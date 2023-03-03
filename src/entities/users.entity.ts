@@ -1,16 +1,11 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany,
-  OneToOne,
-  JoinColumn,
-} from "typeorm";
 import { Exclude } from "class-transformer";
-import { Product } from "./product.entity";
+import {
+  Column, CreateDateColumn, Entity, JoinColumn, OneToMany,
+  OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+} from "typeorm";
 import { Address } from "./address.entity";
+import { Comment } from "./comment.entity";
+import { Product } from "./product.entity";
 
 @Entity("users")
 class User {
@@ -53,6 +48,13 @@ class User {
 
   @OneToMany(() => Product, (product) => product.user, { eager: true })
   products: Product[];
+
+  @OneToMany(() => Comment, (comment) => comment.user, {
+  eager: true,
+  })
+  comments: Comment[];
+
 }
 
 export { User };
+
