@@ -2,23 +2,36 @@ import AppDataSource from "../../data-source";
 import { Comment } from "../../entities/comment.entity";
 import { Product } from "../../entities/product.entity";
 import { AppError } from "../../errors/appError";
+import { listComments } from "../../serializer/commentsProduct.serializer";
 
-const listCommentByIdProductService = async (product_id: string): Promise<Comment[]> => {
+const listCommentByIdProductService = async (product_id: string) => {
   const productRepository = AppDataSource.getRepository(Product);
+  const commentRepository = AppDataSource.getRepository(Comment);
 
-  if (!product_id) {
-    throw new AppError("Product id required", 400);
-  }
-
-  const product = await productRepository.findOneBy({
-    id:product_id,
+  const product = await productRepository.findOne({
+    where: { id: product_id },
   });
+
+  const comments = await commentRepository.find({
+    relations: {
+      user: true,
+      product: true,
+    },
+  });
+
   if (!product) {
-    throw new AppError("Product not found", 400);
+    throw new AppError("Product not found");
   }
 
-  return product.comments;
+  const comment = comments.filter(
+    (comment) => comment.product.id == product.id
+  );
+
+  const newListProduct = await listComments.validate(comment, {
+    stripUnknown: true,
+  });
+
+  return newListProduct;
 };
 
 export { listCommentByIdProductService };
-

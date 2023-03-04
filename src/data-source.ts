@@ -6,8 +6,7 @@ import { Comment } from "./entities/comment.entity";
 import { ImageProduct } from "./entities/imageProduct.entity";
 import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
-import { createMerge1677763042696 } from "./migrations/1677763042696-createMerge";
-
+import { createTables1677847206212 } from "./migrations/1677847206212-createTables";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -31,8 +30,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
-    migrations: [createMerge1677763042696],
-  }
+    migrations: [createTables1677847206212],
+  };
 };
 
 const dataSourceConfig = setDataSourceConfig();
