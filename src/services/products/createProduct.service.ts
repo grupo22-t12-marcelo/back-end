@@ -14,6 +14,10 @@ const createProductService = async (data: IProductRequest, id: string) => {
     id: id,
   });
 
+  if (!user) {
+    throw new AppError("User not found");
+  }
+
   const { imagesGallery } = data;
 
   if (user?.type_account === "Comprador") {
@@ -34,4 +38,3 @@ const createProductService = async (data: IProductRequest, id: string) => {
   return product;
 };
 export { createProductService };
-

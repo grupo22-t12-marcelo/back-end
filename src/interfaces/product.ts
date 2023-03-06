@@ -28,6 +28,7 @@ export interface IProductUpdate {
   price?: number;
   description?: string;
   type_vehicle?: string;
+  is_published?: boolean;
   image?: string;
 }
 
@@ -39,6 +40,7 @@ export interface IProductListAll {
   price: number;
   description: string;
   type_vehicle: string;
+  is_published: boolean;
   image: string;
   createdAt: Date;
 }

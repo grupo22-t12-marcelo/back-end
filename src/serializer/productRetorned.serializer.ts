@@ -19,6 +19,7 @@ export const productReturned: yup.SchemaOf<IProductListAll> = yup
     price: yup.number().positive().required(),
     kilometers: yup.number().positive().required(),
     type_vehicle: yup.string().required(),
+    is_published: yup.boolean().required(),
     description: yup.string().required(),
     title: yup.string().required(),
     type_announcement: yup.string().required(),
