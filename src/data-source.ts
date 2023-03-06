@@ -1,15 +1,14 @@
-import "reflect-metadata";
 import "dotenv/config";
-import path from "path";
+import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
+import { Address } from "./entities/address.entity";
+import { Comment } from "./entities/comment.entity";
+import { ImageProduct } from "./entities/imageProduct.entity";
+import { Product } from "./entities/product.entity";
+import { User } from "./entities/users.entity";
+import { createTables1678108056814 } from "./migrations/1678108056814-createTables";
 
 const setDataSourceConfig = (): DataSourceOptions => {
-  const entitiesPath: string = path.join(__dirname, "./entities/**.{js,ts}");
-  const migrationsPath: string = path.join(
-    __dirname,
-    "./migrations/**.{js,ts}"
-  );
-
   const nodeEnv = process.env.NODE_ENV;
 
   if (nodeEnv === "test") {
@@ -17,7 +16,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory:",
       synchronize: true,
-      entities: [entitiesPath],
+      entities: [User, Product, ImageProduct, Address, Comment],
     };
   }
 
@@ -25,8 +24,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     return {
       type: "postgres",
       url: process.env.DATABASE_URL,
-      entities: [entitiesPath],
-      migrations: [migrationsPath],
+      entities: [User, Product, ImageProduct, Address, Comment],
+      migrations: [createTables1678108056814],
     };
   }
 
@@ -39,8 +38,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.POSTGRES_DB,
     synchronize: false,
     logging: true,
-    entities: [entitiesPath],
-    migrations: [migrationsPath],
+    entities: [User, Product, ImageProduct, Address, Comment],
+    migrations: [createTables1678108056814],
   };
 };
 
