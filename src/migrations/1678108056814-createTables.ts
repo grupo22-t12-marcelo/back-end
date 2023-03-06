@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class createTables1678069056389 implements MigrationInterface {
-    name = 'createTables1678069056389'
+export class createTables1678108056814 implements MigrationInterface {
+    name = 'createTables1678108056814'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "imageProduct" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "image1" character varying NOT NULL, "image2" character varying NOT NULL DEFAULT 'none', "image3" character varying NOT NULL DEFAULT 'none', "image4" character varying NOT NULL DEFAULT 'none', "image5" character varying NOT NULL DEFAULT 'none', "image6" character varying NOT NULL DEFAULT 'none', "productId" uuid, CONSTRAINT "REL_9537ce066328b3798d26dd169c" UNIQUE ("productId"), CONSTRAINT "PK_3115573fd248828575fda62a9bb" PRIMARY KEY ("id"))`);
@@ -12,7 +12,7 @@ export class createTables1678069056389 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "imageProduct" ADD CONSTRAINT "FK_9537ce066328b3798d26dd169c5" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "products" ADD CONSTRAINT "FK_99d90c2a483d79f3b627fb1d5e9" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "comment" ADD CONSTRAINT "FK_c0354a9a009d3bb45a08655ce3b" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
-        await queryRunner.query(`ALTER TABLE "comment" ADD CONSTRAINT "FK_1e9f24a68bd2dcd6390a4008395" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "comment" ADD CONSTRAINT "FK_1e9f24a68bd2dcd6390a4008395" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "address" ADD CONSTRAINT "FK_d25f1ea79e282cc8a42bd616aa3" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
     }
 
