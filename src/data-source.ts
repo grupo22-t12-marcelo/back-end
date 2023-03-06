@@ -6,8 +6,7 @@ import { Comment } from "./entities/comment.entity";
 import { ImageProduct } from "./entities/imageProduct.entity";
 import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
-import { createTables1678069056389 } from "./migrations/1678069056389-createTables";
-import { createTables1678070267572 } from "./migrations/1678070267572-createTables";
+import { createTables1678108056814 } from "./migrations/1678108056814-createTables";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -21,6 +20,15 @@ const setDataSourceConfig = (): DataSourceOptions => {
     };
   }
 
+  if (nodeEnv === "production") {
+    return {
+      type: "postgres",
+      url: process.env.DATABASE_URL,
+      entities: [User, Product, ImageProduct, Address, Comment],
+      migrations: [createTables1678108056814],
+    };
+  }
+
   return {
     type: "postgres",
     host: process.env.POSTGRES_HOST,
@@ -31,7 +39,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
-    migrations: [createTables1678069056389, createTables1678070267572],
+    migrations: [createTables1678108056814],
   };
 };
 
