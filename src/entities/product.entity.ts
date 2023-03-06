@@ -2,9 +2,12 @@ import { Exclude } from "class-transformer";
 import {
   Column,
   CreateDateColumn,
-  Entity, 
-  ManyToOne, 
-  OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+  Entity,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Comment } from "./comment.entity";
 import { ImageProduct } from "./imageProduct.entity";
@@ -57,12 +60,11 @@ class Product {
   })
   user: User;
 
+  @Exclude()
   @OneToMany(() => Comment, (comment) => comment.product, {
-  eager: true,
+    eager: true,
   })
   comments: Comment[];
-
 }
 
 export { Product };
-

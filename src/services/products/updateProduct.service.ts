@@ -14,10 +14,6 @@ const updateProductService = async (
 
   const product = products.find((product) => product.id === id);
 
-  if (product.user.id !== user_id) {
-    throw new AppError("User not owner", 401);
-  }
-
   if (!product) {
     throw new AppError("Product not found", 404);
   }
@@ -32,6 +28,7 @@ const updateProductService = async (
     price: data.price ? data.price : product.price,
     description: data.description ? data.description : product.description,
     type_vehicle: data.type_vehicle ? data.type_vehicle : product.type_vehicle,
+    is_published: data.is_published ? data.is_published : product.is_published,
     image: data.image ? data.image : product.image,
   });
 };

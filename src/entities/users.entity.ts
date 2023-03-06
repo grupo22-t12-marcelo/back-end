@@ -1,7 +1,14 @@
 import { Exclude } from "class-transformer";
+import { execArgv } from "process";
 import {
-  Column, CreateDateColumn, Entity, JoinColumn, OneToMany,
-  OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Address } from "./address.entity";
 import { Comment } from "./comment.entity";
@@ -43,18 +50,14 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Address, (address) => address.user)
+  @OneToOne(() => Address, (address) => address.user, { eager: true })
   address: Address;
 
   @OneToMany(() => Product, (product) => product.user, { eager: true })
   products: Product[];
 
-  @OneToMany(() => Comment, (comment) => comment.user, {
-  eager: true,
-  })
+  @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
-
 }
 
 export { User };
-
