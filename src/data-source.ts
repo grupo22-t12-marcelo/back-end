@@ -6,7 +6,7 @@ import { Comment } from "./entities/comment.entity";
 import { ImageProduct } from "./entities/imageProduct.entity";
 import { Product } from "./entities/product.entity";
 import { User } from "./entities/users.entity";
-import { createTables1678108056814 } from "./migrations/1678108056814-createTables";
+import { novo11678110043058 } from "./migrations/1678110043058-novo1";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const nodeEnv = process.env.NODE_ENV;
@@ -25,7 +25,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [User, Product, ImageProduct, Address, Comment],
-      migrations: [createTables1678108056814],
+      migrations: [novo11678110043058],
     };
   }
 
@@ -39,7 +39,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [User, Product, ImageProduct, Address, Comment],
-    migrations: [createTables1678108056814],
+    migrations: [novo11678110043058],
   };
 };
 
