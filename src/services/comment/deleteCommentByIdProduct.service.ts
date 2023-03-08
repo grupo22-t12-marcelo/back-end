@@ -19,7 +19,7 @@ const deleteCommentByIdProductService = async (id: string, userId: string) => {
     throw new AppError('User not found', 404)
   }
 
-  const commentUser = await userAction.comments.find(comment=>comment.id === id)
+  const commentUser = userAction.comments.find(comment=>comment.id === id)
   if(!commentUser){
     throw new AppError('Comment does not belong to the user', 404)
   }    
