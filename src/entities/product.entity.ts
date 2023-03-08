@@ -51,7 +51,8 @@ class Product {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => ImageProduct, (images) => images.product)
+  @Exclude()
+  @OneToOne(() => ImageProduct, (images) => images.product, { eager: true })
   imagesGallery: ImageProduct;
 
   @Exclude()
