@@ -19,6 +19,15 @@ export interface IProductRequest {
   imagesGallery?: IImagesGallery;
 }
 
+export interface IImagesGalleryUpdate {
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  image6?: string;
+}
+
 export interface IProductUpdate {
   id?: string;
   type_announcement?: string;
@@ -30,6 +39,7 @@ export interface IProductUpdate {
   type_vehicle?: string;
   is_published?: boolean;
   image?: string;
+  imagesGallery?: IImagesGalleryUpdate;
 }
 
 export interface IProductListAll {
