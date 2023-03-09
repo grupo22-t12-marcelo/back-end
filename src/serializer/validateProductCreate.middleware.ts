@@ -16,7 +16,7 @@ const productCreateSchema: SchemaOf<IProductRequest> = yup.object().shape({
   type_announcement: yup.string().oneOf(["Venda", "Leilão"]).required(),
   title: yup.string().required(),
   year: yup.number().positive().required(),
-  kilometers: yup.number().required(),
+  kilometers: yup.number().positive().required(),
   price: yup.number().positive().required(),
   description: yup.string().required(),
   type_vehicle: yup.string().oneOf(["Carro", "Moto"]).required(),
